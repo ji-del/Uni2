@@ -1,0 +1,4 @@
+-- database: ./database.sqlite
+
+SELECT * FROM users;
+DELETE FROM users;

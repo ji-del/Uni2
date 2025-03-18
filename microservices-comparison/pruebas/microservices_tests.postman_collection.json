@@ -1,0 +1,140 @@
+{
+    "info": {
+        "name": "Microservices Tests",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Usuarios - Obtener todos",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3001/users",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "users"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Usuarios - Crear",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3001/users",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "users"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Nuevo Usuario\", \"email\": \"nuevo@correo.com\"}"
+                }
+            }
+        },
+        {
+            "name": "Productos - Obtener todos",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/products",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002",
+                    "path": [
+                        "products"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Productos - Crear",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3002/products",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002",
+                    "path": [
+                        "products"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Laptop\", \"price\": 1200}"
+                }
+            }
+        },
+        {
+            "name": "\u00d3rdenes - Obtener todas",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3003/orders",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003",
+                    "path": [
+                        "orders"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "\u00d3rdenes - Crear",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3003/orders",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003",
+                    "path": [
+                        "orders"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"user_id\": 1, \"product_id\": 1, \"quantity\": 2}"
+                }
+            }
+        }
+    ]
+}
