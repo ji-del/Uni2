@@ -1,0 +1,28 @@
+services:
+  usuarios-service:
+    build: ./usuarios-service
+    ports:
+      - "3001:3001"
+    networks:
+      - microservices-net
+
+  productos-service:
+    build: ./productos-service
+    ports:
+      - "3002:3002"
+    networks:
+      - microservices-net
+
+  ordenes-service:
+    build: ./ordenes-service
+    ports:
+      - "3003:3003"
+    depends_on:
+      - usuarios-service
+      - productos-service
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+  

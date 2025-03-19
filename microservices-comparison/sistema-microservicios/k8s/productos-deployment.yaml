@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productos-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: productos-service
+  template:
+    metadata:
+      labels:
+        app: productos-service
+    spec:
+      containers:
+        - name: productos-service
+          image: productos-service:latest
+          ports:
+            - containerPort: 3002
+          env:
+            - name: PORT
+              value: "3002"
