@@ -1,17 +1,19 @@
 # Usamos la imagen oficial de Node.js
 FROM node:18
 
-# Establecemos el directorio de trabajo
+# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiamos los archivos necesarios
+# Copiar archivos de dependencias primero
 COPY package.json package-lock.json ./
-RUN npm install
 
-# Copiamos el resto del código
+# Instalar las dependencias
+RUN npm install --omit=dev
+
+# Copiar el resto del código
 COPY . .
 
-# Exponemos el puerto del servicio
+# Exponer el puerto del servicio
 EXPOSE 3003
 
 # Comando para ejecutar la aplicación

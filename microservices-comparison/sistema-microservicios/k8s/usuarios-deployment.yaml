@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: usuarios-service
-          image: usuarios-service:latest  # Cambia esto si subes la imagen a Docker Hub
+          image: usuarios-service:latest  # Usa la imagen local
+          imagePullPolicy: Never  # No intenta descargarla de Docker Hub
           ports:
             - containerPort: 3001
           env:

@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const productModel = require('../models/Product');
 
+// Ruta de bienvenida
+router.get("/", (req, res) => {
+    res.send("Bienvenido al microservicio de productos");
+});
+
 // Endpoint para crear un producto
-router.post('/', (req, res) => {
+router.post('/products', (req, res) => {
     const { name, price } = req.body;
     if (!name || !price) {
         return res.status(400).json({ message: "Faltan datos requeridos" });
@@ -19,7 +24,7 @@ router.post('/', (req, res) => {
 });
 
 // Endpoint para obtener todos los productos
-router.get('/', (req, res) => {
+router.get('/products', (req, res) => {
     productModel.getAllProducts((err, products) => {
         if (err) {
             res.status(500).json({ message: "Error al obtener productos" });

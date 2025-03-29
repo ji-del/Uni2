@@ -3,8 +3,13 @@ const axios = require('axios');
 const router = express.Router();
 const orderModel = require('../models/Order');
 
+// Ruta de bienvenida
+router.get("/", (req, res) => {
+    res.send("Bienvenido al microservicio de órdenes");
+});
+
 // Obtener todas las órdenes con detalles de usuario y producto
-router.get('/', async (req, res) => {
+router.get('/orders', async (req, res) => {
     try {
         const orders = await orderModel.getAllOrders();
 
@@ -41,7 +46,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+// Crear una orden
+router.post('/orders', async (req, res) => {
     const { user_id, product_id, quantity } = req.body;
 
     if (!user_id || !product_id || !quantity) {
@@ -56,6 +62,5 @@ router.post('/', async (req, res) => {
         }
     });
 });
-
 
 module.exports = router;
