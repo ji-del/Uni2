@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiar archivos del proyecto
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --build-from-source sqlite3 && npm install
 
 # Copiar el resto del código
 COPY . .

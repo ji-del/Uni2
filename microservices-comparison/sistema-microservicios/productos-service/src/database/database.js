@@ -1,24 +1,19 @@
 const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const fs = require('fs');
 
-// Ruta a la base de datos SQLite
-const DB_PATH = path.join(__dirname, 'productos.db');
-const db = new sqlite3.Database(DB_PATH, (err) => {
+const dbPath = './src/database/productos.db';
+const dirPath = './src/database';
+if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+}
+
+const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
-        console.error('❌ Error conectando a la base de datos:', err.message);
+        console.error('Error al abrir la base de datos:', err.message);
     } else {
-        console.log('✅ Conectado a la base de datos SQLite.');
+        console.log('Conectado a la base de datos SQLite de productos');
+        db.run("CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT, price REAL)");
     }
-});
-
-// Crear tabla de productos si no existe
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS products (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        price REAL NOT NULL
-    )`);
-    console.log("✅ Tabla products verificada.");
 });
 
 module.exports = db;

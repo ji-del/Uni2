@@ -7,6 +7,6 @@ spec:
     app: ordenes-service
   ports:
     - protocol: TCP
-      port: 3003
-      targetPort: 3003
-  type: ClusterIP
+      port: 80
+      targetPort: 3000
+  type: NodePort

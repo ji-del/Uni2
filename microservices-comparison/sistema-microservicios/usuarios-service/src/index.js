@@ -1,15 +1,28 @@
 const express = require('express');
-const cors = require('cors');
-const userRoutes = require('./routes/users'); // Importa correctamente el router
-
 const app = express();
-app.use(cors());
+const { createUser, getAllUsers } = require('./models/user');
+
 app.use(express.json());
 
-// Verifica que esta línea está bien escrita
-app.use('/api/usuarios', userRoutes); 
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Microservicio de Usuarios corriendo en http://localhost:${PORT}`);
+// Ruta de prueba para verificar que el servicio está activo
+app.get('/', (req, res) => {
+    res.send('Usuarios-service está funcionando correctamente');
 });
+
+app.post('/users', (req, res) => {
+    const { name, email } = req.body;
+    createUser(name, email, (err, user) => {
+        err ? res.status(500).json({ message: "Error al crear el usuario" }) : res.status(201).json(user);
+    });
+});
+
+app.get('/users', async (req, res) => {
+    try {
+        const users = await getAllUsers();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener usuarios" });
+    }
+});
+
+app.listen(3001, () => console.log("Usuarios-service corriendo en puerto 3001"));

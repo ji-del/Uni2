@@ -19,9 +19,9 @@ app.get("/", (req, res) => {
     res.send("Servidor Monolítico en funcionamiento...");
 });
 
-app.use("/users", userRoutes);
-app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
+app.use("/user", userRoutes);
+app.use("/product", productRoutes);
+app.use("/order", orderRoutes);
 
 // Configurar el puerto
 const PORT = process.env.PORT || 3000;

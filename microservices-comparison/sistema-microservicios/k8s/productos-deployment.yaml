@@ -14,10 +14,14 @@ spec:
     spec:
       containers:
         - name: productos-service
-          image: productos-service:latest
-          imagePullPolicy: Never
+          image: productos-service
+          imagePullPolicy: IfNotPresent 
           ports:
             - containerPort: 3002
-          env:
-            - name: PORT
-              value: "3002"
+          volumeMounts:
+                      - name: sqlite-storage
+                        mountPath: "/app/src/database.db"
+      volumes:
+                  - name: sqlite-storage
+                    persistentVolumeClaim:
+                      claimName: sqlite-pvc

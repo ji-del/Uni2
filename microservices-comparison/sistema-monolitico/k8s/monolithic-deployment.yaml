@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: monolithic
-          image: tu-usuario/monolithic-app:latest  # Reemplaza con tu imagen en Docker Hub
+          image: localhost:5000/monolitico-app 
           ports:
-            - containerPort: 3000
+            - containerPort: 5000
           env:
             - name: DB_HOST
               value: "monolithic-db"

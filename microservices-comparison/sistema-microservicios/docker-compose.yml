@@ -1,28 +1,20 @@
+version: "3.8"
+
 services:
-  usuarios-service:
-    build: ./usuarios-service
+  ordenes-service:
+    build: ./ordenes-service
     ports:
-      - "3001:3001"
-    networks:
-      - microservices-net
+      - "3000:3000"
+    depends_on:
+      - productos-service
+      - usuarios-service
 
   productos-service:
     build: ./productos-service
     ports:
       - "3002:3002"
-    networks:
-      - microservices-net
 
-  ordenes-service:
-    build: ./ordenes-service
+  usuarios-service:
+    build: ./usuarios-service
     ports:
-      - "3003:3003"
-    depends_on:
-      - usuarios-service
-      - productos-service
-    networks:
-      - microservices-net
-
-networks:
-  microservices-net:
-  
+      - "3001:3001"

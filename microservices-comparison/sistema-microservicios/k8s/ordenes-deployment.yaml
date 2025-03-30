@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ordenes-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ordenes-service
@@ -15,9 +15,13 @@ spec:
       containers:
         - name: ordenes-service
           image: ordenes-service:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent 
           ports:
-            - containerPort: 3003
-          env:
-            - name: PORT
-              value: "3003"
+            - containerPort: 3000
+          volumeMounts:
+            - name: sqlite-storage
+              mountPath: "/app/src/database.db"
+      volumes:
+        - name: sqlite-storage
+          persistentVolumeClaim:
+            claimName: sqlite-pvc
